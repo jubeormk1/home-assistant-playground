@@ -11,7 +11,7 @@
 # | Left     | Change saturation   |
 
 blueprint:
-  source_url: https://github.com/jubeormk1/home-assistant-playground/blob/17cfafeb2549148a49581e4f0eb7114355851dce/blueprints/zha_ikea_tradfri_remote_control_n2.yml
+  source_url: https://github.com/jubeormk1/home-assistant-playground/blob/17cfafeb2549148a49581e4f0eb7114355851dce/blueprints/zha_ikea_tradfri_remote_control_n2.yaml
 
   name: ZHA - IKEA TRADFRI - Remote Control N2 - Color Lights
 
@@ -21,7 +21,7 @@ blueprint:
     This automation simulates the use of the IKEA Remote Control N2
     connected through ZHA.
 
-    based on niro1987 blueprint for [IKEA TRADFRI 5 Buttons Remote](https://github.com/niro1987/homeassistant-config/blob/main/blueprints/automation/niro1987/zha_ikea_tradfri_5button_remote_color.yaml)
+    based on [niro1987's blueprint for IKEA TRADFRI 5 Buttons Remote](https://github.com/niro1987/homeassistant-config/blob/main/blueprints/automation/niro1987/zha_ikea_tradfri_5button_remote_color.yaml)
 
   domain: automation
 

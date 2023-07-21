@@ -13,13 +13,12 @@
 blueprint:
   source_url: https://github.com/jubeormk1/home-assistant-playground/blob/f976bbfced318df5cc9f65aa86e661ab869c8dcf/blueprints/zha_ikea_tradfri_remote_control_n2_with_colour.yaml
 
-  name: ZHA - IKEA TRADFRI - Remote Control N2 - Color Lights - v2 - WIP
+  name: ZHA - IKEA TRADFRI - Remote Control N2 - 4 buttons with color lights
 
   description: >-
-    WIP!
-
     This automation simulates the use of the IKEA Remote Control N2
-    connected through ZHA.
+    connected through ZHA. From the original blueprint I have taken all the events and 
+    used ``color_temp_kelvin`` state attribute instead of the original ``hs_color``.
 
     based on [niro1987's blueprint for IKEA TRADFRI 5 Buttons Remote](https://github.com/niro1987/homeassistant-config/blob/main/blueprints/automation/niro1987/zha_ikea_tradfri_5button_remote_color.yaml)
 
@@ -203,10 +202,10 @@ action:
               entity_id: !input light
             data:
               color_temp_kelvin: >-
-                  {% if state_attr(var_light, "color_temp_kelvin")- 200 < 2202 %}
-                    {{ state_attr(var_light, "color_temp_kelvin") - 200 + 4000 }}
+                  {% if state_attr(var_light, "color_temp_kelvin")+ 200 > state_attr(var_light, "min_color_temp_kelvin") %}
+                    {{ state_attr(var_light, "color_temp_kelvin") + 200 - state_attr(var_light, "max_color_temp_kelvin") }}
                   {% else %}
-                    {{ state_attr(var_light, "color_temp_kelvin") - 200}}
+                    {{ state_attr(var_light, "color_temp_kelvin") + 200}}
                   {% endif %}
               transition: "{{ (var_speed / 1000)|float }}"
 
@@ -225,10 +224,10 @@ action:
                     entity_id: !input light
                   data:
                     color_temp_kelvin: >-
-                        {% if state_attr(var_light, "color_temp_kelvin")- 100 < 2202 %}
-                          {{ state_attr(var_light, "color_temp_kelvin") - 100 + 4000 }}
+                        {% if state_attr(var_light, "color_temp_kelvin")+ 200 > state_attr(var_light, "min_color_temp_kelvin") %}
+                          {{ state_attr(var_light, "color_temp_kelvin") + 200 - state_attr(var_light, "max_color_temp_kelvin") }}
                         {% else %}
-                          {{ state_attr(var_light, "color_temp_kelvin") - 100}}
+                          {{ state_attr(var_light, "color_temp_kelvin") + 200}}
                         {% endif %}
                     transition: "{{ (var_speed / 1000)|float }}"
                 - delay:

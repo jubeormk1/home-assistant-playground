@@ -122,7 +122,7 @@ action:
       # Short-Press on the dim-down button.
       - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.command == "step" }}'
+            value_template: '{{ trigger.event.data.command == "off" }}'
         sequence:
           - service: light.turn_on
             target:

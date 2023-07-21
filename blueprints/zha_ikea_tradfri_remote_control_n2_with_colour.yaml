@@ -202,10 +202,10 @@ action:
               entity_id: !input light
             data:
               color_temp_kelvin: >-
-                  {% if state_attr(var_light, "color_temp_kelvin")+ 200 > state_attr(var_light, "min_color_temp_kelvin") %}
-                    {{ state_attr(var_light, "color_temp_kelvin") + 200 - state_attr(var_light, "max_color_temp_kelvin") }}
+                  {% if state_attr(var_light, "color_temp_kelvin")- 200 < state_attr(var_light, "min_color_temp_kelvin") %}
+                    {{ state_attr(var_light, "color_temp_kelvin") - 200 - state_attr(var_light, "max_color_temp_kelvin") }}
                   {% else %}
-                    {{ state_attr(var_light, "color_temp_kelvin") + 200}}
+                    {{ state_attr(var_light, "color_temp_kelvin") - 200}}
                   {% endif %}
               transition: "{{ (var_speed / 1000)|float }}"
 
@@ -224,10 +224,10 @@ action:
                     entity_id: !input light
                   data:
                     color_temp_kelvin: >-
-                        {% if state_attr(var_light, "color_temp_kelvin")+ 200 > state_attr(var_light, "min_color_temp_kelvin") %}
-                          {{ state_attr(var_light, "color_temp_kelvin") + 200 - state_attr(var_light, "max_color_temp_kelvin") }}
+                        {% if state_attr(var_light, "color_temp_kelvin")- 200 < state_attr(var_light, "min_color_temp_kelvin") %}
+                          {{ state_attr(var_light, "color_temp_kelvin") - 200 - state_attr(var_light, "max_color_temp_kelvin") }}
                         {% else %}
-                          {{ state_attr(var_light, "color_temp_kelvin") + 200}}
+                          {{ state_attr(var_light, "color_temp_kelvin") - 200}}
                         {% endif %}
                     transition: "{{ (var_speed / 1000)|float }}"
                 - delay:

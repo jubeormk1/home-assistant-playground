@@ -16,7 +16,7 @@ blueprint:
   name: ZHA - IKEA TRADFRI - Remote Control N2 - 4 buttons with color lights
 
   description: >-
-  
+
     This automation simulates the use of the IKEA Remote Control N2
     connected through ZHA. From the original blueprint I have taken all the events and 
     used ``color_temp_kelvin`` state attribute instead of the original ``hs_color``.
@@ -67,28 +67,28 @@ trigger:
 
 action:
   - choose:
-      # Short-Press on the power button.
-      - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.command == "toggle" }}'
-        sequence:
-          - service: light.toggle
-            target:
-              entity_id: !input light
+      # # Short-Press on the power button.
+      # - conditions:
+      #     - condition: template
+      #       value_template: '{{ trigger.event.data.command == "toggle" }}'
+      #   sequence:
+      #     - service: light.toggle
+      #       target:
+      #         entity_id: !input light
 
-      # Long-Press on the power button.
-      - conditions:
-          - condition: template
-            value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off" }}'
-        sequence:
-          - service: light.turn_on
-            target:
-              entity_id: !input light
-            data:
-              brightness: 254
-              hs_color:
-                - 38.222
-                - 52.941
+      # # Long-Press on the power button.
+      # - conditions:
+      #     - condition: template
+      #       value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off" }}'
+      #   sequence:
+      #     - service: light.turn_on
+      #       target:
+      #         entity_id: !input light
+      #       data:
+      #         brightness: 254
+      #         hs_color:
+      #           - 38.222
+      #           - 52.941
 
       # Short-Press on the dim-up button.
       - conditions:
@@ -99,7 +99,7 @@ action:
             target:
               entity_id: !input light
             data:
-              brightness_step_pct: 20
+              state: "on"
               transition: "{{ (var_speed / 1000)|float }}"
 
       # Long-Press on the dim-up button.

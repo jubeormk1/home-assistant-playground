@@ -16,6 +16,7 @@ blueprint:
   name: ZHA - IKEA TRADFRI - Remote Control N2 - 4 buttons with color lights
 
   description: >-
+  
     This automation simulates the use of the IKEA Remote Control N2
     connected through ZHA. From the original blueprint I have taken all the events and 
     used ``color_temp_kelvin`` state attribute instead of the original ``hs_color``.
@@ -203,7 +204,7 @@ action:
             data:
               color_temp_kelvin: >-
                   {% if state_attr(var_light, "color_temp_kelvin")- 200 < state_attr(var_light, "min_color_temp_kelvin") %}
-                    {{ state_attr(var_light, "color_temp_kelvin") - 200 - state_attr(var_light, "max_color_temp_kelvin") }}
+                    {{ state_attr(var_light, "color_temp_kelvin") - 200 + state_attr(var_light, "max_color_temp_kelvin") }}
                   {% else %}
                     {{ state_attr(var_light, "color_temp_kelvin") - 200}}
                   {% endif %}
@@ -225,7 +226,7 @@ action:
                   data:
                     color_temp_kelvin: >-
                         {% if state_attr(var_light, "color_temp_kelvin")- 200 < state_attr(var_light, "min_color_temp_kelvin") %}
-                          {{ state_attr(var_light, "color_temp_kelvin") - 200 - state_attr(var_light, "max_color_temp_kelvin") }}
+                          {{ state_attr(var_light, "color_temp_kelvin") - 200 + state_attr(var_light, "max_color_temp_kelvin") }}
                         {% else %}
                           {{ state_attr(var_light, "color_temp_kelvin") - 200}}
                         {% endif %}

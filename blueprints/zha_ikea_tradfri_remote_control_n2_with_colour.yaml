@@ -94,11 +94,10 @@ action:
       - conditions:
           - condition: template
             value_template: '{{ trigger.event.data.command == "on" }}'
-        sequence:
-          - service: light.turn_on
+        action:
+          - type: turn_on
             target:
               entity_id: !input light
-          - type: turn_on
 
       # Long-Press on the dim-up button.
       - conditions:

@@ -77,12 +77,13 @@ action:
             target:
               entity_id: !input light
             data:
-              brightness: >- # 254 # In a future version of this I would like to store the value when turning the light off and then restore it on turning on. That's the Ikeas original behaviour
+              brightness: >-
                 {% if state_attr(var_light, "brightness")+  > 0 %}
                   {{ state_attr(var_light, "brightness")}}
                 {% else %}
                   {{ 254}}
                 {% endif %}
+              transition: "{{ (var_speed / 1000)|float }}"
 
       # Long-Press on the dim-up button.
       - conditions:

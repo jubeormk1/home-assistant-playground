@@ -93,14 +93,12 @@ action:
       # Short-Press on the dim-up button.
       - conditions:
           - condition: template
-            value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+            value_template: '{{ trigger.event.data.command == "on" }}'
         sequence:
           - service: light.turn_on
             target:
               entity_id: !input light
-            data:
-              state: "on"
-              transition: "{{ (var_speed / 1000)|float }}"
+            type: turn_on
 
       # Long-Press on the dim-up button.
       - conditions:

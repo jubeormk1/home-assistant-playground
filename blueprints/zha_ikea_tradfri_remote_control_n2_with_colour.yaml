@@ -98,7 +98,7 @@ action:
           - service: light.turn_on
             target:
               entity_id: !input light
-            type: turn_on
+          - type: turn_on
 
       # Long-Press on the dim-up button.
       - conditions:

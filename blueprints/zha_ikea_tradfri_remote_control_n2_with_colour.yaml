@@ -67,28 +67,6 @@ trigger:
 
 action:
   - choose:
-      # # Short-Press on the power button.
-      # - conditions:
-      #     - condition: template
-      #       value_template: '{{ trigger.event.data.command == "toggle" }}'
-      #   sequence:
-      #     - service: light.toggle
-      #       target:
-      #         entity_id: !input light
-
-      # # Long-Press on the power button.
-      # - conditions:
-      #     - condition: template
-      #       value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off" }}'
-      #   sequence:
-      #     - service: light.turn_on
-      #       target:
-      #         entity_id: !input light
-      #       data:
-      #         brightness: 254
-      #         hs_color:
-      #           - 38.222
-      #           - 52.941
 
       # Short-Press on the dim-up button.
       - conditions:
@@ -99,8 +77,12 @@ action:
             target:
               entity_id: !input light
             data:
-              brightness: 254
-              transition: "{{ (var_speed / 1000)|float }}"
+              brightness: >- # 254 # In a future version of this I would like to store the value when turning the light off and then restore it on turning on. That's the Ikeas original behaviour
+                {% if state_attr(var_light, "brightness")+  > 0 %}
+                  {{ state_attr(var_light, "brightness")}}
+                {% else %}
+                  {{ 254}}
+                {% endif %}
 
       # Long-Press on the dim-up button.
       - conditions:
